@@ -4,6 +4,8 @@ from ..layers.resonant_attention import ResonantMultiheadAttention
 from ..layers.ignition import ResonantIgnitionLayer
 
 
+# this is a legacy artifact BottleneckResBlock to ensure the first setups conform to need.
+# This will be rewritten soon and will become obsoleted once rewritten into resonant form.
 class BottleneckResBlock(nn.Module):
     def __init__(self, dim, kernel=3, dropout=0.1):
         super().__init__()
