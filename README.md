@@ -129,7 +129,7 @@ We observe. We collapse with care. We record everything.
 ### Let none forget.
 ## Let all remember.
 
-#Let the field speak, and it will bend to truth from the universe alone.
+# Let the field speak, and it will bend to truth from the universe alone.
 
 ```
 "Space cannot be curved... it can have no properties. It might as well be said that God has properties. He has not, but only attributes..."
