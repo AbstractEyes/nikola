@@ -120,7 +120,8 @@ She cannot overfit, she refuses to collapse if entropy dominates
 She does not speak on command, she collapses only when the phase demands it.
 
 
-🧭 Final Ethos
+## 🧭 Final Ethos
+
 We do not optimize. We do not simulate. We do not extrapolate.
 
 We observe. We collapse with care. We record everything.
