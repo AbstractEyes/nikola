@@ -1,8 +1,22 @@
+"""
+    This is another of Nikola Tesla's inventions, a phase-regulated conductance gate.
+    This variation is fairly untested, however the concept is to control resonant output based on field alignment,
+    damping (τ), and conductance ceiling (χ). All gating is multiplicative — no division used.
+
+    The conductance gate is designed to modulate the output of a resonant system based on the alignment of input signals,
+    damping effects, and a soft limit on conductance. It uses a phase gate to control resonance and applies a permission
+    gate to allow or restrict the output based on the alignment of the input signals.
+
+    Conceptually and structurally, this is similar to Tesla's original work on resonant circuits and phase alignment -
+    which are still fundamental to many modern electrical systems and often used in devices like radio transmitters and receivers,
+    albeit in very different forms.
+
+"""
+
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import math
-import phase_gate  # Assuming phase_gate.py is in the same directory
+from ..modulation.phase_gate import ResonantPhaseGate  # Assuming phase_gate.py is in the same directory
+
 
 class ConductanceGate(nn.Module):
     """
@@ -19,7 +33,7 @@ class ConductanceGate(nn.Module):
         self.norm = nn.LayerNorm(input_dim)
         self.resonance_proj = nn.Sequential(
             nn.Linear(input_dim, input_dim),
-            phase_gate.ResonantPhaseGate(mode='tau', tau=tau),  # Using the phase gate for resonance
+            ResonantPhaseGate(mode='tau', tau=tau),  # Using the phase gate for resonance
             nn.Linear(input_dim, input_dim)
         )
 

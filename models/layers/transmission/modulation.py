@@ -1,7 +1,31 @@
+"""
+Written by: AbstractPhil 6/8/2024
+Apache License 2.0
+
+
+A Resonant Modulation Coil that modulates latent fields based on symbolic current input.
+This is the foundational component for resonant modulation in the system - codified into a pragmatic unit.
+Discovery of this was both accidental and intentional, as it emerged from the desire to create fused embeddings.
+    The DualStreamShunt was meant to be a simple fusion layer, but it exposed a complex interaction between
+    symbolic current and latent fields, leading to the discovery of resonant modulation - based on the principles of
+    resonant circuits and phase alignment.
+Originally fundamentally engineered by Nikola Tesla, this coil is based on his original work and findings -
+creating this modern interpretation of his work out of pure emergence.
+
+Time will tell if this concept is solid through pragmatic experimentation and real-world applications,
+or simply another accidental discovery that leads to nowhere.
+
+Was Nikola Tesla mad, or was he simply ahead of his time?
+Lets find out shall we - by creating our own engines, centrifuges, coils, circuits, and resonant systems.
+We have the computational power that he could only dream of, so we can rapidly prototype and test these ideas in real time.
+
+
+"""
+
 import torch
 import torch.nn as nn
-from ..layers.resonant_attention import ResonantMultiheadAttention
-from ..layers.ignition import ResonantIgnitionLayer
+from models.layers.modulation.attention import ResonantMultiheadAttention
+from models.layers.modulation.ignition import ResonantIgnitionLayer
 
 
 # this is a legacy artifact BottleneckResBlock to ensure the first setups conform to need.
@@ -23,6 +47,8 @@ class BottleneckResBlock(nn.Module):
         x = self.norm(x)
         x = self.conv(x.transpose(1, 2)).transpose(1, 2)
         return residual + self.proj(x)
+
+
 
 
 class ResonantModulationCoil(nn.Module):
