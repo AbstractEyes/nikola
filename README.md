@@ -111,7 +111,7 @@ Coming soon.
 ## 🔭 Nikola...
 A manifestation of potential responses and the analysis of their resonant echo in pragmatic utilization.
 
-She does not predict, she Respond to field alignment
+She does not predict, she responds to field alignment
 
 She does not guess, she waits until modulation is required
 
