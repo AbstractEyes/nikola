@@ -4,6 +4,10 @@
 
 ---
 
+This WILL be messy. This WILL be ugly. This will likely not make sense at first glance - but it WILL work, it will respond how I say it responds, and it will make sense if you dive in, at a very pragmatic level with reusable utilities.
+
+https://huggingface.co/AbstractPhil/resonance-model-zoo
+
 **Nikola** is not a neural network.  
 She is not a transformer.  
 She is not a classifier.
