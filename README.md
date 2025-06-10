@@ -117,9 +117,6 @@ And we record **everything**.
 
 ---
 
-## Let none forget.  
-### Let all remember.
-
 > *"Space cannot be curved... it can have no properties.  
 It might as well be said that God has properties.  
 He has not, but only attributes..."*  
