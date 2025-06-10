@@ -6,7 +6,7 @@
 
 If a discovery shatters everything - we will be there to pick up the pieces and start from there.
 
-This WILL be messy. This WILL be ugly. This will likely not make sense at first glance - but it WILL work, it will respond how I say it responds, and it will make sense if you dive in, at a very pragmatic level with reusable utilities.
+This WILL be messy. This WILL be ugly. This will likely not make sense at first glance - but it WILL work, it will respond through tensors, math, and assessments - and it WILL make sense if you dive in - at a very fundamental and pragmatic level with reusable utilities.
 
 https://huggingface.co/AbstractPhil/resonance-model-zoo
 
