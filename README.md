@@ -8,6 +8,8 @@ If a discovery shatters everything - we will be there to pick up the pieces and 
 
 This WILL be messy. This WILL be ugly. This will likely not make sense at first glance - but it WILL work, it will respond through tensors, math, and assessments - and it WILL make sense if you dive in - at a very fundamental and pragmatic level with reusable utilities.
 
+This math does not need my opinion, just a guiding hand to shape it.
+
 https://huggingface.co/AbstractPhil/resonance-model-zoo
 
 **Nikola** is not a neural network.  
