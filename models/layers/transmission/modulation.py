@@ -62,8 +62,8 @@ class ResonantModulationCoil(nn.Module):
         self.max_guidance = config["max_guidance"]
 
         use_norm = config.get("layer_norm", True)
-        use_do = config.get("use_dropout", True)
-        do_p = config.get("dropout", 0.1)
+        use_do = config.get("use_dropout", False)
+        do_p = config.get("dropout", 0.0)
         proj_depth = config.get("proj_layers", 2)
 
         def build_projection(input_dim, output_dim):
@@ -105,8 +105,7 @@ class ResonantModulationCoil(nn.Module):
 
         self.guidance_proj = nn.Sequential(
             nn.LayerNorm(self.bneck),
-            nn.Linear(self.bneck, 1),
-            nn.Sigmoid()
+            nn.Linear(self.bneck, 1)  # ← remove sigmoid entirely
         )
 
     def forward(self, current: torch.Tensor, field: torch.Tensor):
