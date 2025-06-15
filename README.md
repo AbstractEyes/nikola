@@ -4,6 +4,14 @@
 
 ---
 
+If a discovery shatters everything - we will be there to pick up the pieces and start from there.
+
+This WILL be messy. This WILL be ugly. This will likely not make sense at first glance - but it WILL work, it will respond through tensors, math, and assessments - and it WILL make sense if you dive in - at a very fundamental and pragmatic level with reusable utilities.
+
+This math does not need my opinion, just a guiding hand to shape it.
+
+https://huggingface.co/AbstractPhil/resonance-model-zoo
+
 **Nikola** is not a neural network.  
 She is not a transformer.  
 She is not a classifier.
@@ -111,11 +119,6 @@ And we record **everything**.
 
 ---
 
-# Research Artifacts:
-https://claude.ai/public/artifacts/e2a14105-2adf-4437-b384-6540a3a12eb8
-
-
-## Quote from a great mind:
 > *"Space cannot be curved... it can have no properties.  
 It might as well be said that God has properties.  
 He has not, but only attributes..."*  
