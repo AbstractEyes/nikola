@@ -1,3 +1,4 @@
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -5,7 +6,6 @@ import numpy as np
 import math
 from models.layers.transmission.modulation import ResonantModulationCoil
 from models.layers.modulation.phase_gate import ResonantPhaseGate
-
 
 class DirectResonantClassifier(nn.Module):
     """
@@ -63,7 +63,7 @@ class DirectResonantClassifier(nn.Module):
     def apply_resonant_shock(self, x):
         B, T, D = x.shape
         shock = torch.zeros_like(x)
-        for i in range(255):
+        for i in range(5):
             freq = (i + 1) * 0.29514
             amplitude = 0.29514 / (i + 1)
             phase = i * math.pi / 5

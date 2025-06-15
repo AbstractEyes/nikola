@@ -105,7 +105,8 @@ class ResonantModulationCoil(nn.Module):
 
         self.guidance_proj = nn.Sequential(
             nn.LayerNorm(self.bneck),
-            nn.Linear(self.bneck, 1)  # ← remove sigmoid entirely
+            nn.Linear(self.bneck, 1),
+            nn.Sigmoid()
         )
 
     def forward(self, current: torch.Tensor, field: torch.Tensor):

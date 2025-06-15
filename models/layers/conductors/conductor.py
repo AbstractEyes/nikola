@@ -17,7 +17,6 @@ import torch
 import torch.nn as nn
 from ..modulation.phase_gate import ResonantPhaseGate  # Assuming phase_gate.py is in the same directory
 
-
 class ConductanceGate(nn.Module):
     """
     A phase-regulated gate that controls resonant output based on field alignment,

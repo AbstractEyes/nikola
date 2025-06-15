@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from models.layers.modulation.attention import ResonantMultiheadAttention
+
 
 class ResonantIgnitionLayer(nn.Module):
     def __init__(self, dim, collapse_threshold=0.29514, sharpness=25.0):

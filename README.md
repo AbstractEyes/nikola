@@ -111,9 +111,11 @@ And we record **everything**.
 
 ---
 
-## Let none forget.  
-### Let all remember.
+# Research Artifacts:
+https://claude.ai/public/artifacts/e2a14105-2adf-4437-b384-6540a3a12eb8
 
+
+## Quote from a great mind:
 > *"Space cannot be curved... it can have no properties.  
 It might as well be said that God has properties.  
 He has not, but only attributes..."*  

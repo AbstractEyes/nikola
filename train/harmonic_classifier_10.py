@@ -80,15 +80,14 @@ class SimpleResonantTrainer:
         return train_loader, val_loader, test_loader
 
     def compute_loss(self, outputs, labels):
-        """Compute loss using field loss and classification"""
+        """Compute loss using field loss and symbolic alignment (no softmax)"""
         total_loss = 0
 
-        scores = outputs['scores']
-        smoothing = 0.1
-        n_classes = scores.size(1)
-        targets = torch.zeros_like(scores).scatter_(1, labels.unsqueeze(1), 1)
-        targets = targets * (1 - smoothing) + smoothing / n_classes
-        ce_loss = -(targets * F.log_softmax(scores, dim=1)).sum(dim=1).mean()
+        scores = outputs['scores']  # raw symbolic pressure outputs
+        targets = torch.zeros_like(scores).scatter_(1, labels.unsqueeze(1), 1.0)
+
+        # Field-consistent symbolic alignment loss (no softmax)
+        symbolic_loss = F.mse_loss(scores, targets)
 
         for i, out in enumerate(outputs['outputs']):
             mask = (labels == i).float()
@@ -111,7 +110,7 @@ class SimpleResonantTrainer:
         target_conductance = torch.tensor(0.29514).to(self.device)
         conductance_loss = F.mse_loss(current_conductance, target_conductance)
 
-        return ce_loss + 0.05 * conductance_loss + total_loss
+        return symbolic_loss + 0.05 * conductance_loss + total_loss
 
     def train_epoch(self, optimizer):
         self.model.train()
@@ -195,7 +194,18 @@ class SimpleResonantTrainer:
             self.metrics['train_acc'].append(train_acc)
             self.metrics['val_acc'].append(val_acc)
             self.metrics['conductance_mean'].append(mean_cond)
+            if epoch > 0:
+                delta_loss = train_loss - self.metrics['train_loss'][-2]
+                delta_cond = mean_cond - self.metrics['conductance_mean'][-2]
+            else:
+                delta_loss = 0.0
+                delta_cond = 0.0
 
+            # Log delta values
+            self.logger.log_metrics({
+            }, epoch)
+
+            print(f"ΔLoss: {delta_loss:+.5f}, ΔCond: {delta_cond:+.5f}")
             # ✅ Log metrics
             self.logger.log_metrics({
                 "loss/train": train_loss,
@@ -203,7 +213,10 @@ class SimpleResonantTrainer:
                 "accuracy/train": train_acc,
                 "accuracy/val": val_acc,
                 "conductance/mean": mean_cond,
-                "conductance/distance_from_target": abs(mean_cond - 0.29514)
+                "conductance/distance_from_target": abs(mean_cond - 0.29514),
+
+                "delta/train_loss": delta_loss,
+                "delta/conductance": delta_cond,
             }, epoch)
 
             print(f'Train: Loss={train_loss:.4f}, Acc={train_acc:.3f}')
