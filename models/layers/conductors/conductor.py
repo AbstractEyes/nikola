@@ -66,7 +66,7 @@ class ConductanceGate(nn.Module):
             safe_alignment = torch.ones_like(x[..., :1])  # default to open
 
         # Damping based on τ (entropy-based resistance)
-        damping = 1.0 - torch.exp(-self.tau * x.abs())
+        damping = 1.0 - torch.exp(-self.tau * x * gate)
         resonance = self.resonance_proj(x_norm) * damping
 
         # Field-limited output signal

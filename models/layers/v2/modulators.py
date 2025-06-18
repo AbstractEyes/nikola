@@ -1,12 +1,6 @@
 import torch
 import torch.nn as nn
-import math
-
-
-import torch
-import torch.nn as nn
 import torch.nn.functional as F
-
 
 class PhaseModulator(nn.Module):
     """
@@ -42,3 +36,38 @@ class PhaseModulator(nn.Module):
 
         else:
             raise ValueError(f"Unknown phase modulation mode: {self.mode}")
+
+
+
+class SymbolicConductanceModulator(nn.Module):
+    """
+    Formerly ConductanceGate.
+    Controls symbolic energy expression based on internal resonance modulation.
+    Entropy-driven collapse must be invoked externally.
+    """
+    def __init__(self, input_dim, phase_mode='sin', conductance_limit=1.0):
+        super().__init__()
+        self.phase = PhaseModulator(mode=phase_mode)
+        self.norm = nn.LayerNorm(input_dim)
+
+        # Symbolic transformation
+        self.transform = nn.Sequential(
+            nn.Linear(input_dim, input_dim),
+            self.phase,
+            nn.Linear(input_dim, input_dim)
+        )
+
+        # Expression scaling
+        self.project = nn.Sequential(
+            nn.LayerNorm(input_dim),
+            nn.Linear(input_dim, 1),
+            nn.Sigmoid()
+        )
+
+        self.limit = conductance_limit
+
+    def forward(self, x):
+        x_norm = self.norm(x)
+        expr = self.transform(x_norm)
+        gate = self.project(expr).clamp(max=self.limit)  # Scaled expression energy
+        return expr * gate

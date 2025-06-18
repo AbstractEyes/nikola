@@ -1,17 +1,14 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from models.layers.modulation.phase_gate import PhaseModulator  # Now corrected name
-from models.layers.modulation.ignition import ResonantIgnitionLayer
-
 
 class ResonantMultiheadAttention(nn.Module):
     def __init__(
-            self,
-            dim: int,
-            heads: int = 8,
-            collapse_threshold: float = 0.27,
-            sharpness: float = 15.0,
+        self,
+        dim: int,
+        heads: int = 8,
+        collapse_threshold: float = 0.27,
+        sharpness: float = 15.0,
     ):
         super().__init__()
         self.dim = dim
@@ -34,8 +31,6 @@ class ResonantMultiheadAttention(nn.Module):
         # Output projection
         self.out_proj = nn.Linear(self.inner_dim, dim)
         self.norm = nn.LayerNorm(dim)
-
-        # Isolated projector module
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         B, T, D = x.shape
